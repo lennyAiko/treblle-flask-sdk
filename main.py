@@ -24,8 +24,8 @@ def save_file(db, file_name):
 @app.before_request
 def before_request_callback():
     global articles_db, users_db
-    articles_db = read_file()
-    users_db = read_file()
+    articles_db = read_file('articles')
+    users_db = read_file('users')
 
 @app.after_request
 def after_request_callback(response):
