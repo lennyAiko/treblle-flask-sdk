@@ -2,9 +2,10 @@ from flask import Flask, request, jsonify
 import uuid
 
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
+from treblle_flask import Treblle
 
 app = Flask(__name__)
-# Treblle(app)
+Treblle(app)
 
 app.config["JWT_SECRET_KEY"] = "treblle-flask-sdk" 
 jwt = JWTManager(app)
@@ -58,7 +59,7 @@ def articles():
         for i in articles_db:
             if payload['title'] == i['title']:
                 return {"message": "oops! already exists"}, 400
-        payload['id'] = uuid.uuid4()
+        payload['id'] = str(uuid.uuid4())
         payload['author'] = current_user
         articles_db.append(payload)
         return payload, 201
