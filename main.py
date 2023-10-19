@@ -65,17 +65,14 @@ def articles():
 
 @app.route('/<art_id>', methods=['PATCH', 'DELETE', 'GET'])
 @jwt_required()
-def single_articles(art_id):
+def single_article(art_id):
     current_user = get_jwt_identity()
     if request.method == 'GET':
         for i in articles_db:
             if str(art_id) == str(i['id']):
                 if current_user == i['author']:
                     return i, 200
-                else:
-                    return {"message": f"Could not find your article with this id:{art_id}"}, 404
-            else:
-                return {"message": "not found"}, 404
+        return {"message": "not found"}, 404
     elif request.method == 'PATCH':
         payload = request.get_json()
         for i in articles_db:
@@ -84,21 +81,14 @@ def single_articles(art_id):
                     i['title'] = payload['title']
                     i['body'] = payload['body']
                     return i, 200
-                else:
-                    return {"message": f"Could not find your article with this id:{art_id}"}, 404
-            else:
-                return {"message": "not found"}, 404
+        return {"message": "not found"}, 404
     else:
         for i in articles_db:
             if str(art_id) == str(i['id']):
                 if current_user == i['author']:
                     articles_db.remove(i)
                     return {"message": "Successful"}, 200
-                else:
-                    return {"message": f"Could not find your article with this id:{art_id}"}, 404
-            else:
-                return {"message": "not found"}, 404
-    return {"message": "Bad request"}, 400
+        return {"message": "not found"}, 404
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
