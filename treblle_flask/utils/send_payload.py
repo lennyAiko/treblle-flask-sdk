@@ -7,13 +7,13 @@ Send payload to Treblle
 @param { string } api_key
 """
 
-async def send_payload(payload, api_key):
+def send_payload(payload, api_key):
     treblle_headers = {
         'Content_Type': 'application/json',
         'X-API-Key': api_key
     }
     try:
-        request = await requests.post(
+        request = requests.post(
             url=treblle_base_url(),
             data=payload, headers=treblle_headers,
             timeout=2
