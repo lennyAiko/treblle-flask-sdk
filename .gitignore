@@ -1,3 +1,4 @@
 env/
 treblle/__pycache__
 treblle/utils/__pycache__
+__pycache__/
