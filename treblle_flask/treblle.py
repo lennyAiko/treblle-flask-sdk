@@ -52,6 +52,8 @@ class Treblle(object):
 
     def init_app(self, app: Flask) -> None:
         machine: dict = machine_info()
+        if len(machine) < 4:
+            self.errors.append("Incomplete machine")
 
         @app.before_request
         def get_request() -> None:

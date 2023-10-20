@@ -12,6 +12,14 @@ Return a completed Treblle payload, that can be modified before being sent.
 """
 
 
+def check_items(items: list, error: list, name: str):
+    for item in items:
+        for k, v in item.values():
+            if len(v) < 1:
+                error.append(f"Incomplete {name} data")
+    return error
+
+
 def treblle_payload(
     keys: dict,
     server: dict,
@@ -20,6 +28,8 @@ def treblle_payload(
     response: dict,
     errors: list,
 ) -> dict | bool:
+    errors = check_items([keys, server, language, request, response], errors, "keys")
+
     payload: dict = {
         "api_key": str(keys["api"]),
         "project_id": str(keys["project"]),
@@ -69,7 +79,12 @@ def treblle_payload(
         print("Invalid API key or project ID")
         return False
     else:
-        payload = json.dumps(payload)
+        try:
+            payload = json.dumps(payload)
+        except Exception as e:
+            payload["data"]["response"]["body"] = ""
+            payload["errors"] = errors.append(e)
+            payload = json.dumps(payload)
         return payload
 
 
