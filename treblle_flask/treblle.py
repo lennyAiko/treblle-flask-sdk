@@ -20,7 +20,8 @@ class Treblle(object):
     project_id: str
     hidden_keys: list
 
-    api_key, project_id, hidden_keys = get_json_file()
+    if get_json_file() is not None:
+        api_key, project_id, hidden_keys = get_json_file()
 
     hidden_json_keys = [
         "password",

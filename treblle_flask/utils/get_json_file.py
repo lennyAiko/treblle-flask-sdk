@@ -20,6 +20,7 @@ def get_json_file() -> list:
 
     if not api_key or not project_id:
         print("No api key or project id found in treblle.json")
+        return None
 
     if isinstance(hidden_keys, list):
         hidden_keys = list(x.lower() for x in hidden_keys)

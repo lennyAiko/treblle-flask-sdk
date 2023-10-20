@@ -5,6 +5,7 @@ treblle_flask/utils/__pycache__
 __pycache__/
 treblle_flask/test/__pycache__
 treblle_flask/test/.pytest_cache
+treblle_flask/test/treblle.json
 treblle_flask/.pytest_cache
 treblle.json
 treblle_flask/treblle.json
