@@ -1,4 +1,4 @@
-def mask_json_values(json_values, hidden_json_keys):
+def mask_json_values(json_values: dict | list, hidden_json_keys: list) -> dict:
     for key, value in json_values.items():
         if isinstance(value, dict):
             mask_json_values(value)
@@ -18,7 +18,7 @@ def mask_json_values(json_values, hidden_json_keys):
     return json_values
 
 
-def mask_list_values(list_values, hk):
+def mask_list_values(list_values: list | dict, hk: list) -> list:
     for item in list_values:
         if isinstance(item, dict):
             mask_json_values(item, hk)

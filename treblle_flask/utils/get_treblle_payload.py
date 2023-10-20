@@ -1,4 +1,5 @@
 import json
+
 """
 Return a completed Treblle payload, that can be modified before being sent.
 @param { dict } keys
@@ -11,10 +12,17 @@ Return a completed Treblle payload, that can be modified before being sent.
 """
 
 
-def treblle_payload(keys, server, language, request, response, errors):
-    payload = {
-        "api_key": str(keys['api']),
-        "project_id": str(keys['project']),
+def treblle_payload(
+    keys: dict,
+    server: dict,
+    language: dict,
+    request: dict,
+    response: dict,
+    errors: list,
+) -> dict | bool:
+    payload: dict = {
+        "api_key": str(keys["api"]),
+        "project_id": str(keys["project"]),
         "version": 0.1,
         "sdk": "flask",
         "data": {
@@ -54,11 +62,11 @@ def treblle_payload(keys, server, language, request, response, errors):
         },
     }
 
-    if not keys['api'] or not keys['project']:
-        print('No API key or Project ID found')
+    if not keys["api"] or not keys["project"]:
+        print("No API key or Project ID found")
         return False
-    elif len(keys['api']) < 32 or len(keys['project']) < 16:
-        print('Invalid API key or project ID')
+    elif len(keys["api"]) < 32 or len(keys["project"]) < 16:
+        print("Invalid API key or project ID")
         return False
     else:
         payload = json.dumps(payload)
