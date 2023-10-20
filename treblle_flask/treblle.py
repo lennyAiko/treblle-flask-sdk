@@ -44,7 +44,6 @@ class Treblle(object):
             self.init_app(app)
 
     def init_app(self, app: Flask):
-        # track the start of the request
 
         machine = machine_info()
 

@@ -14,9 +14,21 @@ jwt = JWTManager(app)
 articles_db = []
 users_db = []
 
+## callbacks
+
+@app.after_request
+def after_request_callback(response):
+    # response.headers['Content-Encoding'] = 'gzip'
+    response.headers['Content-Type'] = 'application/json'
+    response.headers['X-Frame-Options'] = 'deny'
+    response.headers['Accept'] = 'application/json'
+    response.headers['Allow'] = 'GET, POST, PATCH, DELETE'
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    return response
+
 ## routes
 
-@app.route('/sign_up', methods=['POST'])
+@app.route('/signup', methods=['POST'])
 def create_user():
     payload = request.get_json()
     user_id = uuid.uuid4()
@@ -27,22 +39,17 @@ def create_user():
     users_db.append(payload)
     show = payload.copy()
     show['password'] = '*' * len(show['password'])
-    return jsonify(show), 201
+    return show, 201
 
 @app.route('/login', methods=['POST'])
 def login_user():
     payload = request.get_json()
-
     for i in users_db:
         if payload["username"] == i['username']:
-            if payload["password"] != i['password']:
-                return {"message": "Password incorrect"}, 401
-            else:
+            if payload["password"] == i['password']:
                 access_token = create_access_token(identity=payload['username'])
                 return {"token": access_token}, 201
-        else:
-            return {"message": "Invalid username"}, 401
-    return {"message": "No account found"}, 401
+    return {"message": "Password incorrect"}, 401
         
 @app.route('/', methods=['GET', 'POST'])
 @jwt_required()
@@ -72,7 +79,7 @@ def single_article(art_id):
         for i in articles_db:
             if str(art_id) == str(i['id']):
                 if current_user == i['author']:
-                    return i, 200
+                    return i, 200, {'Allow': 'GET'}
         return {"message": "not found"}, 404
     elif request.method == 'PATCH':
         payload = request.get_json()
