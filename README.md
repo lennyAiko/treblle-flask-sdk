@@ -25,4 +25,11 @@ Treblle(app)
 
 That is all it takes to set up the Treblle-flask SDK.
 
+There are also test files available, to run tests:
+
+1. `pip install -r requirements.txt`
+2. `cd treblle_flask`
+3. `cd test`
+4. run: `pytest` or `pytest -v` (to view test cases)
+
 Enjoy!
