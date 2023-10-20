@@ -2,7 +2,7 @@
 
 This is an API to test the Flask SDK for Treblle.
 
-## REQUIREMENTS
+## Requirements
 
 A `treblle.json` file has to be present in the root directory of the project. This file should contain a dictionary like the example below:
 
@@ -23,6 +23,14 @@ Treblle(app)
 ...
 ```
 
+Two ways to run the server:
+
+`flask --app main run`
+
+To run in debug mode:
+
+`flask --app main --debug run`
+
 That is all it takes to set up the Treblle-flask SDK.
 
 There are also test files available, to run tests:
@@ -32,6 +40,16 @@ There are also test files available, to run tests:
 3. `cd test`
 4. run: `pytest` or `pytest -v` (to view test cases)
 
-> Tip: Ensure treblle.json is present in project directory and test directory
+> Tip: Ensure treblle.json is present in project directory and test directory (just for testing purpose) ;-)
+
+## Available Endpoints
+
+- Create user --> `http://127.0.0.1:5000/signup`
+- Login --> `http://127.0.0.1:5000/signin`
+- All articles --> `http://127.0.0.1:5000/` , { Bearer 'token' }
+- Create article --> `http://127.0.0.1:5000/` , { Bearer 'token' }
+- Fetch article --> `http://127.0.0.1:5000/:uuid` , { Bearer 'token' }
+- Update article --> `http://127.0.0.1:5000/:uuid` , { Bearer 'token' }
+- Delete article --> `http://127.0.0.1:5000/:uuid` , { Bearer 'token' }
 
 Enjoy!
