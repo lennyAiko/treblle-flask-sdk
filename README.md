@@ -4,6 +4,14 @@ This is an API to test the Flask SDK for Treblle.
 
 ## Requirements
 
+### Installation
+
+Install the necessary packages
+
+`pip install -r requirements.txt`
+
+### Setup
+
 A `treblle.json` file has to be present in the root directory of the project. This file should contain a dictionary like the example below:
 
 ```
@@ -23,22 +31,25 @@ Treblle(app)
 ...
 ```
 
+That is all it takes to set up the Treblle-flask SDK.
+
+### Run the server
+
 Two ways to run the server:
 
-`flask --app main run`
+1. `flask --app main run`
 
 To run in debug mode:
 
-`flask --app main --debug run`
+2. `flask --app main --debug run`
 
-That is all it takes to set up the Treblle-flask SDK.
+### Test files
 
 There are also test files available, to run tests:
 
-1. `pip install -r requirements.txt`
-2. `cd treblle_flask`
-3. `cd test`
-4. run: `pytest` or `pytest -v` (to view test cases)
+1. `cd treblle_flask`
+2. `cd test`
+3. run: `pytest` or `pytest -v` (to view test cases)
 
 > Tip: Ensure treblle.json is present in project directory and test directory (just for testing purpose) ;-)
 
