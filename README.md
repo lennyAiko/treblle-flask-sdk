@@ -22,6 +22,8 @@ A `treblle.json` file has to be present in the root directory of the project. Th
 }
 ```
 
+> Don't forget to add `treblle.json` to .gitignore file
+
 Once that is out of the way, the next step is to import the Treblle class and pass the `app` instance:
 
 ```py
@@ -51,7 +53,7 @@ There are also test files available, to run tests:
 2. `cd test`
 3. run: `pytest` or `pytest -v` (to view test cases)
 
-> Tip: Ensure treblle.json is present in project directory and test directory (just for testing purpose) ;-)
+> Tip: Ensure treblle.json is present in project directory and test directory (just for testing purpose, don't forget to add to .gitignore) ;-)
 
 ## Available Endpoints
 
