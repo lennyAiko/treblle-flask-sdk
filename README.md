@@ -32,4 +32,6 @@ There are also test files available, to run tests:
 3. `cd test`
 4. run: `pytest` or `pytest -v` (to view test cases)
 
+> Tip: Ensure treblle.json is present in project directory and test directory
+
 Enjoy!

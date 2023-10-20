@@ -10,8 +10,6 @@ from .utils import (
 import datetime, json
 from time import gmtime, strftime, time
 
-## CHECK FOR ERRORS
-
 
 class Treblle(object):
     __name__ = "Treblle"
