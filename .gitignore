@@ -1,4 +1,11 @@
 env/
-treblle/__pycache__
-treblle/utils/__pycache__
+.pytest_cache/
+treblle_flask/__pycache__
+treblle_flask/utils/__pycache__
 __pycache__/
+treblle_flask/test/__pycache__
+treblle_flask/test/.pytest_cache
+treblle_flask/.pytest_cache
+treblle.json
+treblle_flask/treblle.json
+.vscode/
